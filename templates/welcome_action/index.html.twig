@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Therightcorner{% endblock %}
+
+{% block body %}
+
+    <style>
+    .line {
+    border-left: 1px solid gray;
+    height: 35em;
+    }
+    </style>
+
+<div class="bg-light text-center w-50 rounded shadow" style="position: absolute; margin-left: 30em; margin-top: -3em">
+    <h1 class="p-2 m-2">Leboncoin, le plus grand des petites annonces</h1>
+</div>
+
+    <div class="d-flex justify-content-center" style="margin-top:10em">
+    
+
+
+        <div class="row align-items-center h-75 w-75 bg-orange-lighter shadow rounded p-5">
+        
+            <div class="col-5 mx-5 px-5">
+                <div class="row">
+                    <div class="col-11">
+                        {{ render(path(
+                            'app_login', {}
+                        )) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-1 line"></div>
+
+            <div class="col-4">
+                {{ render(path(
+                    'app_register', {}
+                )) }}
+            </div>
+        </div>
+    
+    </div>
+
+
+<div class="d-flex justify-content-center">
+    <div class="w-25 text-center bg-light m-5 p-2 shadow rounded">
+        <p class="text-secondary">Ça ne marche pas mdr, il faut utiliser: </p>
+        <div class="d-flex justify-content-around">
+            <a href="{{ path('app_register') }}" class="btn btn-primary rounded-pill shadow">Inscription</a>
+            <a href="{{ path('app_login') }}" class="btn btn-success rounded-pill shadow">Se connecter</a>
+        </div>
+
+        <p class="text-secondary mt-2">Elle est belle la page de login sinon :D</p>
+       
+    </div>
+    
+
+</div>
+
+{% endblock %}

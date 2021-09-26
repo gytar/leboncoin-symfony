@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard | Therightcorner{% endblock %}
+
+{% block body %}
+
+{% include "includes/navbar.html.twig" %}
+
+<h1 class="text-center my-3">{{user.firstname}} {{user.lastname}} Dashboard</h1>
+
+<div class="text-center">
+    <a href="{{url('product_new')}}" class="btn btn-primary btn-lg " style="position: absolute; margin-left: -3.7em;"> <span><i class="fa-regular fa-plus"></i> Add a product</span> </a>
+</div>
+
+
+<div class="row my-5 mx-auto w-75 bg-light rounded shadow p-4 mb-5 ">
+    <div class="col-4">
+        <h3 class="text-center">Item</h3>
+    </div>
+
+    <div class="col-2">
+        <h3 class="text-left">Price</h3>
+    </div>
+
+    <div class="col-2"> <h3 class="text-left">Date</h3></div>
+
+    <div class="col-4"><h3 class="text-left">Actions</h3></div>
+    {% for item in products %}
+        <div class="col-4">
+            <div class="d-flex justify-content-between">
+                <span>{{item.label}}</span>
+                <img src="{{item.imageUrl}}" alt="{{item.label}}" class="img-fluid w-25">
+            </div>    
+        </div>
+        <div class="col-2">
+            <span>{{item.price}}€</span>
+        </div>
+        <div class="col-2">
+            <span>{{item.createdAt|date}}</span>
+        </div>
+        <div class="col-4 my-3">
+            <div class="d-flex justify-content-around">
+                {% if item.isOnSale %}
+                        <a href="{{ path('on_sale', {'id': item.id}) }}" class="btn btn-warning">Withdraw from sales</a>
+                    {% else %}
+                        <a href="{{ path('on_sale', {'id': item.id}) }}" class="btn btn-success">Make on sale!</a>
+                {% endif %}
+                {{ include('product/_delete_form.html.twig') }}
+
+            </div>            
+        </div>
+        {% else %}
+            <div class="d-flex justify-content-center align-items-center p-5">
+                <div>No products to show, add one <a href="{{ url('product_new')}}">here!</a> </div>
+            </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

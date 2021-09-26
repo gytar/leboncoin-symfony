@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}On sales | TherightcornerAPI{% endblock %}
+
+{% block body %}
+
+    {% include('includes/navbar.html.twig') %}
+
+    <div class="d-flex justify-content-center">
+        <div class="w-50 bg-light shadow rounded">
+            <h1 class="text-center">On sales products list</h1>
+        </div>
+    </div>
+    <table class="table table-striped table-hover my-3">
+        <thead>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Description</th>
+            <th scope="col">Image URL</th>
+            <th scope="col">Seller</th>
+        </thead>
+        
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <th scope="row">{{ product.id }}</th>
+                    <td>{{ product.label }}</td>
+                    <td>{{ product.price }} €</td>
+                    <td>{{ product.description }}</td>
+                    <td><a href="{{product.imageUrl}}" alt="?">{{product.imageUrl}}</a></td>
+                    <td>{{ product.seller.firstName }} {{ product.seller.lastName }}</td>
+                </tr>
+            {% endfor %}
+        
+        </tbody>
+    
+
+ </table>
+    {% if products.getTotalItemCount() > 20 %}
+    
+        <div class="d-flex justify-content-center">
+        <div class="w-25 bg-light shadow mb-2 p-1 d-flex justify-content-around rounded">
+            {{ knp_pagination_render(products) }}
+        </div>
+    </div>
+    
+    {% endif %}
+    
+<p style="float: right !important; margin-right: 1em" class="bg-light p-2 rounded">Total : {{ products.getTotalItemCount }} products</p>
+    
+{% endblock %}
