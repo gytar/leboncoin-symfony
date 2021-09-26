@@ -36,10 +36,14 @@
 
  </table>
 
-    <div class="d-flex justify-content-center">
+    {% if products.getTotalItemCount() > 5 %}
+    
+        <div class="d-flex justify-content-center">
         <div class="w-25 bg-light shadow mb-2 p-1 d-flex justify-content-around rounded">
             {{ knp_pagination_render(products) }}
         </div>
     </div>
+    
+    {% endif %}
     
 {% endblock %}
