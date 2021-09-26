@@ -14,6 +14,9 @@ security:
             entity:
                 class: App\Entity\User
                 property: email
+    
+    # je ne sais pas ou mettre
+    # -> stateless: true
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -25,7 +28,7 @@ security:
             logout:
                 path: app_logout
                 # where to redirect after logout
-                # target: app_any_route
+                target: welcome_action
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -37,5 +40,4 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
          - { path: ^/dashboard, roles: ROLE_USER }
-         - { path: ^/api, roles: ROLE_USER }
          - { path: ^/browse, roles: ROLE_USER }
