@@ -51,7 +51,6 @@ class ApiController extends AbstractController
             AbstractNormalizer::CIRCULAR_REFERENCE_HANDLER => function ($object) {
                 return $object->getId();
             },
-            AbstractNormalizer::CIRCULAR_REFERENCE_LIMIT => 1,
         ]);
 
         return new JsonResponse($productsOnSale, 200, [], true);
@@ -84,7 +83,6 @@ class ApiController extends AbstractController
             AbstractNormalizer::CIRCULAR_REFERENCE_HANDLER => function($object) {
                 return $object->getId();
             },
-            AbstractNormalizer::CIRCULAR_REFERENCE_LIMIT => 1,
         ]);
 
         return new JsonResponse($userProducts, 200, [], true);
